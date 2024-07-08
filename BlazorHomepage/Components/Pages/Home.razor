@@ -1,18 +1,11 @@
 ﻿@page "/"
+@rendermode InteractiveServer
+@using BlazorHomepage.Components.Home.Search
 
 <PageTitle>Home</PageTitle>
 
 <!-- Search Bar-->
-<FluentGrid Spacing="3" AdaptiveRendering="true" Justify="JustifyContent.FlexStart" Style="margin-top: 1rem;">
-    <!-- Search bar -->
-    <FluentGridItem md="2" HiddenWhen="GridItemHidden.SmAndDown" />
-    <FluentGridItem xs="12" md="8">
-        <FluentCard>
-            xs=12 md=8 - Search bar
-        </FluentCard>
-    </FluentGridItem>
-    <FluentGridItem md="2" HiddenWhen="GridItemHidden.SmAndDown" />
-</FluentGrid>
+<SearchBarBase />
 
 <!-- Link grid -->
 <FluentGrid Spacing="3" AdaptiveRendering="true" Justify="JustifyContent.Center" Style="margin-top: 3rem;">

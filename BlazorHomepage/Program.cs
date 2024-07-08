@@ -1,5 +1,6 @@
 using Microsoft.FluentUI.AspNetCore.Components;
 using BlazorHomepage.Components;
+using BlazorHomepage.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddFluentUIComponents();
+
+// Setup db context factory
+builder.Services.AddDbContextFactory<BlazorHomepageContext>();
 
 var app = builder.Build();
 

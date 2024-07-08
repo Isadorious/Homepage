@@ -10,6 +10,7 @@
 </div>
 
 <FluentButton Appearance="Appearance.Accent" @onclick="IncrementCount">Click me</FluentButton>
+<FluentButton Loading="@loading" OnClick="@StartLoadingAsync" Appearance="Appearance.Accent">Loading</FluentButton>
 
 @code {
     private int currentCount = 0;
@@ -17,5 +18,14 @@
     private void IncrementCount()
     {
         currentCount++;
+    }
+    
+    bool loading = false;
+
+    async Task StartLoadingAsync()
+    {
+        loading = true;
+        await Task.Delay(2000);
+        loading = false;
     }
 }

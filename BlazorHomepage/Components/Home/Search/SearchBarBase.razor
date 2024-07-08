@@ -1,0 +1,38 @@
+﻿@inject IJSRuntime JSRuntime
+@rendermode InteractiveServer
+<!-- Search bar -->
+<FluentGrid Spacing="3" AdaptiveRendering="true" Justify="JustifyContent.FlexStart" Style="margin-top: 1rem;">
+    <FluentGridItem md="2" HiddenWhen="GridItemHidden.SmAndDown" />
+    <FluentGridItem xs="12" md="8">
+        <FluentCard>
+            <FluentStack HorizontalAlignment="HorizontalAlignment.Left">
+                <FluentTextField @bind-Value=_searchQuery Style="width: 90%;"></FluentTextField>
+                <FluentButton OnClick="@Search">Search</FluentButton>
+                @* <FluentButton Loading="@loading" OnClick="@StartLoadingAsync" Appearance="Appearance.Accent">Loading</FluentButton> *@
+            </FluentStack>
+        </FluentCard>
+    </FluentGridItem>
+    <FluentGridItem md="2" HiddenWhen="GridItemHidden.SmAndDown" />
+</FluentGrid>
+
+@code {
+    private string _searchQuery { get; set; } = string.Empty;
+    
+    private async Task Search()
+    {
+        // search logic
+        // https://google.com/search?q= + urlEncode(_searchQuery)
+        
+        // open search page in new tab
+        await JSRuntime.InvokeVoidAsync("open", $"https://google.com/search?q={Uri.EscapeDataString(_searchQuery)}", "_blank");
+    }
+    
+    bool loading = false;
+
+    async Task StartLoadingAsync()
+    {
+        loading = true;
+        await Task.Delay(2000);
+        loading = false;
+    }
+}
